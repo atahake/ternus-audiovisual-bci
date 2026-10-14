@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+
+title: "Ternus Audiovisual Bayesian Causal-Inference Project"
+
+authors:
+  - family-names: "Jia"
+    given-names: "Xiaoyi"
+    affiliation: "School of Psychological and Cognitive Sciences, Peking University"
+
+  - family-names: "Chen"
+    given-names: "Lihan"
+    affiliation: "School of Psychological and Cognitive Sciences, Peking University"
+
+contact:
+  email: xiaoyi_jia@stu.pku.edu.cn
+
+version: 1.0.0
+
+message: "Please cite the associated manuscript when using these data or code."

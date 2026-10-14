@@ -1,0 +1,7 @@
+Data and code availability
+
+De-identified behavioral data, analysis code, model implementations, and figure-generation scripts will be publicly available upon publication at [repository link].
+
+The repository includes baseline psychophysical data, audiovisual Ternus task data, Bayesian causal-inference modeling code, model recovery analyses, identifiability diagnostics, and scripts required to reproduce the reported analyses.
+
+Experimental stimulus presentation programs are not included.
