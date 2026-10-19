@@ -62,12 +62,6 @@ The stimulus-presentation programs are **not included** in the current repositor
 
 The de-identified data and analysis materials available for this project are provided in the repository archives listed above. Experimental stimulus-presentation programs are not included in the current release.
 
-## Citation
-
-Please cite the associated manuscript when using these materials:
-
-Jia, X., & Chen, L. *[Manuscript title to be added]*. [Publication details to be added when available.]
-
 ## License
 
 See `LICENSE` for the repository license terms.
