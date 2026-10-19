@@ -1,99 +1,73 @@
 # Ternus Audiovisual Bayesian Causal-Inference Project
 
-This repository provides data and MATLAB analysis code for the study **“Causal inference and task dependent weighting in audiovisual Ternus perception.”** The study examines how auditory and visual Ternus sequences are organized across modalities, how temporal disparity relates to common-source judgments, and how Bayesian causal-inference models explain element/group motion reports.
-
 **Authors:** Xiaoyi Jia and Lihan Chen  
 **Affiliation:** School of Psychological and Cognitive Sciences, Peking University  
-**Contact:** xiaoyi_jia@stu.pku.edu.cn  
-**Repository:** https://github.com/atahake/ternus-audiovisual-bci
+**Contact:** xiaoyi_jia@stu.pku.edu.cn
 
-## Study overview
+## Overview
 
-Participants completed auditory and visual baseline psychophysics and a fully crossed 7 × 7 audiovisual Ternus design. Auditory and visual interstimulus intervals (ISIs) ranged from 30 to 210 ms in 30-ms steps. In separate report blocks, participants reported element or group motion in the designated modality (AttendV or AttendA) and then judged whether the auditory and visual streams appeared to share a common source.
+This repository contains materials supporting a study of audiovisual temporal organization using the Ternus display paradigm and Bayesian causal-inference (BCI) observer models.
 
-The primary analyses included 34 participants who completed the programmed design and met the prespecified baseline-fit criterion. Behavioral analyses examined common-source judgments, target- and distractor-stream timing effects, and associations with independently measured psychophysical sensitivity.
-
-The computational analyses compared three observer strategies:
-
-- **Model averaging (MA):** combines common-cause and separate-cause estimates according to the causal posterior.
-- **Forced fusion (FF):** assumes a common cause.
-- **Segregation (Seg):** assumes separate causes.
-
-The project evaluates both a **Free** model family, in which auditory and visual latent uncertainty are estimated independently, and a **baseline-informed relative-uncertainty** family, which constrains the auditory-to-visual latent-noise ratio using the participant's baseline JND ratio while leaving the overall scale free. A baseline JND is a behavioral psychometric width and is **not** treated as a direct measurement of latent sensory noise. Model preference is interpreted alongside prediction overlap, model recovery, and parameter-recovery diagnostics; a winning information criterion alone is not evidence of a uniquely identified perceptual mechanism.
+The study examines how auditory and visual temporal structure influences apparent-motion reports and common-cause judgments, and whether independently measured baseline psychophysical sensitivity can constrain the *relative* auditory–visual uncertainty structure in an audiovisual observer model.
 
 ## Repository contents
 
-The repository currently contains the following files and archives:
+- `01_CODE/` — MATLAB analysis scripts and model implementations. See [`README_CODE.md`](01_CODE/README_CODE.md) for code-specific instructions.
+- `02_RESULTS/` — analysis outputs, model-fitting results, recovery outputs, and tables, where included.
+- `03_FIGURES/` — manuscript and supplementary figures, where included.
+- `04_MANUSCRIPT/` — manuscript files, where included.
+- `06_DOCUMENTATION/` — data dictionary, reproduction notes, and supporting documentation.
+- Data archives or data folders — de-identified behavioral and baseline psychophysical data, if included in the public release.
+- `Supporting_Information.pdf` — supplementary methods, figures, and tables, if included in the repository.
 
-| File | Contents |
-|---|---|
-| `Data.zip` | De-identified behavioral data and associated data/analysis files for the study. |
-| `Baseline_Psychometric_Curves.zip` | Baseline psychometric-curve materials. |
-| `code.zip` | MATLAB analysis and Bayesian causal-inference model scripts, organized by analysis stage. |
-| `DATA_DICTIONARY.md` | Overview of the data and model-output variables. |
-| `REPRODUCTION_GUIDE.md` | Short guide to the analysis workflow and software environment. |
-| `DATA_AND_CODE_AVAILABILITY.txt` | Data/code availability statement associated with the manuscript. |
-| `CITATION.cff` | Citation metadata for this repository. |
-| `LICENSE` | Repository license. |
+Folder names and availability may vary across repository versions. Consult the actual files in the current release; do not assume that every category above is populated.
 
-### MATLAB code organization
+## Study design and analysis
 
-After extracting `code.zip`, the included scripts are organized into these folders:
+The canonical analysis uses 34 participants after applying the study's baseline psychometric quality-control criterion. The audiovisual task uses a 7 × 7 design in which auditory and visual interstimulus intervals (ISIs) are varied independently.
 
-- `01_MAIN_PIPELINE/` — primary model-comparison pipeline (`run_BCI_model_comparison_v4.m`).
-- `02_BCI_CORE/` — likelihood and response-distribution functions used by the observer models.
-- `03_BEHAVIOR/` — empirical response summaries, model-prediction grids, baseline psychometric plots, and a reliability-aware random-slope check.
-- `04_FREE_BCI_RECOVERY/` — recovery analyses for the unconstrained Free model family.
-- `05_IDENTIFIABILITY/` — diagnostics of prediction overlap and MA–FF identifiability.
-- `06_BASELINE_INFORMED_BCI/` — baseline-informed model fitting and recovery analyses.
+The analysis workflow includes:
 
-The code archive includes the following main scripts: `run_BCI_model_comparison_v4.m`, `computeNegLL_AVTernus_v4.m`, `computeRespDistrib_AVTernus_v4.m`, `export_behavior_empirical_bins_v2.m`, `export_behavior_prediction_grids_v3.m`, `plot_baseline_psychometric_curves.m`, `run_reliability_random_slope_check.m`, `run_BCI_R2filtered_recovery_v4.m`, `diagnose_MA_FF_identifiability_v2.m`, `run_JND_BCI_v1.m`, and `run_JND_informed_BCI_recovery_v1.m`.
+1. Baseline auditory and visual psychophysical analyses.
+2. Audiovisual behavioral analyses.
+3. Unconstrained Bayesian causal-inference model fitting and model comparison.
+4. Model-recovery and identifiability diagnostics, including model mimicry and parameter-recovery analyses.
+5. A baseline-informed model that constrains relative auditory–visual uncertainty while leaving the absolute scale free.
+6. Recovery, trial-count, and sensitivity analyses, where corresponding scripts and outputs are included.
 
-Experimental stimulus-presentation programs are not included in this repository.
+## Important interpretation notes
 
-## Software and setup
+- Baseline JND values are behavioral psychometric-width measures; they are not assumed to be numerically identical to latent sensory-noise parameters.
+- The baseline-informed model uses baseline sensitivity to constrain the *relative* auditory–visual uncertainty structure. It does not establish that baseline JNDs directly equal the latent noise parameters in the audiovisual task.
+- Model comparison and recovery results provide evidence conditional on the candidate models, parameterization, and simulated data-generating assumptions. They do not, by themselves, prove a unique neural or perceptual mechanism.
 
-The analyses were developed with **MATLAB R2024**. Depending on the analysis being run, MATLAB functionality for numerical optimization and generalized linear mixed-effects models may be required.
+## Software
 
-1. Download or clone this repository.
-2. Extract `Data.zip`, `Baseline_Psychometric_Curves.zip`, and `code.zip` into locations accessible to MATLAB.
-3. Read `REPRODUCTION_GUIDE.md` and the comments at the top of the relevant scripts before running an analysis.
-4. Check and update input/output paths for your local machine. Some scripts were developed in a Windows environment and may contain machine-specific absolute paths; they may need to be edited before they will run elsewhere.
-5. Run the required scripts in the order appropriate to the analysis you wish to reproduce, starting with the primary model-comparison pipeline when reproducing the main model comparison. Recovery and identifiability analyses are separate, computationally intensive stages.
+The analysis code was developed for MATLAB R2024. Required toolboxes and dependencies should be checked in the relevant scripts and in `01_CODE/README_CODE.md`.
 
-The scripts should not be assumed to run unchanged on every computer. Confirm that the input files referenced by each script are present and that output directories exist before launching a full recovery simulation.
+## Reproducing analyses
 
-## Analysis workflow
+1. Download or clone the repository.
+2. Obtain the de-identified data files included in the public release.
+3. Open MATLAB and set the repository root as the working directory.
+4. Read `01_CODE/README_CODE.md` before running any script.
+5. Run the relevant scripts in the documented order. Some analyses may depend on intermediate files produced by earlier steps.
+6. Check each script's input paths and output locations before running it.
 
-The analysis sequence follows the structure of the manuscript and supporting information:
+The scripts have undergone static review and path/documentation cleanup, but the complete pipeline has not yet been verified in a clean MATLAB environment. Do not interpret the repository as a guaranteed one-click reproduction until end-to-end execution has been tested.
 
-1. Screen the sample and fit the unimodal auditory and visual baseline psychometric functions.
-2. Analyze audiovisual behavioral responses, including common-source judgments and motion reports in AttendV and AttendA.
-3. Fit and compare the Free MA, FF, and Seg observer models.
-4. Evaluate model recovery, parameter recovery, and MA–FF prediction overlap to assess practical identifiability.
-5. Fit the baseline-informed relative-uncertainty family and compare recovery with the Free family.
-6. Inspect sensitivity and diagnostic analyses before interpreting model preference.
+## Data and code availability
 
-Trial-count simulations are diagnostic analyses of residual model ambiguity; they should not be interpreted as a recommendation that future experiments must collect a particular multiple of the original number of trials.
+De-identified behavioral data, baseline psychophysical measurements, analysis code, model implementations, and figure-generation scripts are available through this repository to the extent that the corresponding files are included in the public release.
 
-## Interpretation and reproducibility notes
-
-- The physical audiovisual design is the same 7 × 7 ISI grid across participants; the grid is not adjusted online to individual PSEs.
-- Baseline JNDs describe the widths of fitted behavioral transitions. Their use to constrain a latent uncertainty ratio is a model-linking assumption, not an established identity between JND and sensory noise.
-- The baseline-informed model constrains relative auditory–visual uncertainty but leaves the absolute noise scale free.
-- Recovery results are conditional on the candidate models, parameter ranges, and simulation settings tested. They support conclusions about practical identifiability within the tested model space, not global identifiability or proof that one strategy is the brain's unique mechanism.
-- Reproduction may require adapting paths and output-directory settings to the local environment. Record any such changes when reporting reproduced results.
-
-For details on variable definitions, consult `DATA_DICTIONARY.md`. For the manuscript's supporting methods, model specifications, and diagnostic analyses, consult the associated Supporting Information.
+Experimental stimulus-presentation programs are not included in the current release.
 
 ## Citation
 
-If you use the data or code, please cite the associated manuscript:
+Please cite the associated manuscript when using these materials:
 
-> Jia, X., & Chen, L. *Causal inference and task dependent weighting in audiovisual Ternus perception.*
+Jia, X., & Chen, L. *[Manuscript title to be added]*. [Publication details to be added when available.]
 
-Please also cite this repository: https://github.com/atahake/ternus-audiovisual-bci
+## License
 
-## Contact
-
-For questions about the data or analysis code, contact Xiaoyi Jia at `xiaoyi_jia@stu.pku.edu.cn`.
+See the `LICENSE` file if one is included. If no license is present, reuse permissions have not yet been explicitly specified.
