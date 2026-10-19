@@ -1,66 +1,66 @@
 # Ternus Audiovisual Bayesian Causal-Inference Project
 
-**Authors:** Xiaoyi Jia and Lihan Chen  
-**Affiliation:** School of Psychological and Cognitive Sciences, Peking University  
-**Contact:** xiaoyi_jia@stu.pku.edu.cn
+This repository provides data and analysis materials for the study of audiovisual Ternus perception and Bayesian causal-inference (BCI) modeling.
 
-## Overview
+## Authors and contact
 
-This repository contains materials supporting a study of audiovisual temporal organization using the Ternus display paradigm and Bayesian causal-inference (BCI) observer models.
-
-The study examines how auditory and visual temporal structure influences apparent-motion reports and common-cause judgments, and whether independently measured baseline psychophysical sensitivity can constrain the *relative* auditory–visual uncertainty structure in an audiovisual observer model.
+- **Xiaoyi Jia**
+- **Lihan Chen**
+- School of Psychological and Cognitive Sciences, Peking University
+- Contact: xiaoyi_jia@stu.pku.edu.cn
 
 ## Repository contents
 
-- `01_CODE/` — MATLAB analysis scripts and model implementations. See [`README_CODE.md`](01_CODE/README_CODE.md) for code-specific instructions.
-- `02_RESULTS/` — analysis outputs, model-fitting results, recovery outputs, and tables, where included.
-- `03_FIGURES/` — manuscript and supplementary figures, where included.
-- `04_MANUSCRIPT/` — manuscript files, where included.
-- `06_DOCUMENTATION/` — data dictionary, reproduction notes, and supporting documentation.
-- Data archives or data folders — de-identified behavioral and baseline psychophysical data, if included in the public release.
-- `Supporting_Information.pdf` — supplementary methods, figures, and tables, if included in the repository.
+The files currently available in the repository are listed below. The data and code are provided as ZIP archives in this version of the repository.
 
-Folder names and availability may vary across repository versions. Consult the actual files in the current release; do not assume that every category above is populated.
+| File | Contents / purpose |
+|---|---|
+| `Data.zip` | De-identified behavioral and task data supplied for the analyses. See `DATA_DICTIONARY.md` for the available data descriptions. |
+| `Baseline_Psychometric_Curves.zip` | Baseline psychometric-curve materials. |
+| `code.zip` | MATLAB analysis code and model implementation files. |
+| `CITATION.cff` | Citation metadata for this repository. |
+| `DATA_DICTIONARY.md` | Description of the data categories and variables. |
+| `REPRODUCTION_GUIDE.md` | Brief outline of the analysis workflow and software environment. |
+| `DATA_AND_CODE_AVAILABILITY.txt` | Data and code availability statement associated with the project. |
+| `LICENSE` | MIT license file. |
 
-## Study design and analysis
+The archives are provided as uploaded; consult their contents and accompanying documentation before running analyses. The repository does not currently expose the code and data as browsable folder trees.
 
-The canonical analysis uses 34 participants after applying the study's baseline psychometric quality-control criterion. The audiovisual task uses a 7 × 7 design in which auditory and visual interstimulus intervals (ISIs) are varied independently.
+## Study overview
 
-The analysis workflow includes:
+The project uses the Ternus display paradigm to investigate audiovisual temporal organization and apparent-motion judgments. The analysis includes baseline auditory and visual psychophysics, audiovisual behavioral analyses, Bayesian causal-inference observer models, model comparison, model-recovery and identifiability diagnostics, and a baseline-informed model.
 
-1. Baseline auditory and visual psychophysical analyses.
+The canonical analysis described in the manuscript includes 34 participants and an audiovisual design with auditory and visual interstimulus intervals varied independently across a 7 × 7 set of combinations. Refer to the manuscript and supplementary information for the precise inclusion criteria, task details, model specifications, and reported results.
+
+## Model interpretation
+
+The baseline-informed model uses baseline psychophysical sensitivity to constrain the **relative** auditory–visual uncertainty structure while leaving the overall scale free. Baseline JND values are not assumed to be numerically identical to latent sensory-noise parameters in the audiovisual observer.
+
+Model comparison and recovery results should be interpreted conditional on the candidate models, parameterization, and simulated data-generating assumptions. They do not, by themselves, establish a unique perceptual or neural mechanism.
+
+## Software and reproduction
+
+The analysis code was developed for MATLAB R2024. The current `REPRODUCTION_GUIDE.md` provides the high-level workflow:
+
+1. Baseline psychophysical analyses.
 2. Audiovisual behavioral analyses.
-3. Unconstrained Bayesian causal-inference model fitting and model comparison.
-4. Model-recovery and identifiability diagnostics, including model mimicry and parameter-recovery analyses.
-5. A baseline-informed model that constrains relative auditory–visual uncertainty while leaving the absolute scale free.
-6. Recovery, trial-count, and sensitivity analyses, where corresponding scripts and outputs are included.
+3. Bayesian causal-inference model fitting.
+4. Model recovery and identifiability analyses.
+5. Baseline-informed uncertainty analyses.
+6. Figure generation.
 
-## Important interpretation notes
+To begin:
 
-- Baseline JND values are behavioral psychometric-width measures; they are not assumed to be numerically identical to latent sensory-noise parameters.
-- The baseline-informed model uses baseline sensitivity to constrain the *relative* auditory–visual uncertainty structure. It does not establish that baseline JNDs directly equal the latent noise parameters in the audiovisual task.
-- Model comparison and recovery results provide evidence conditional on the candidate models, parameterization, and simulated data-generating assumptions. They do not, by themselves, prove a unique neural or perceptual mechanism.
+1. Download and extract `Data.zip`, `Baseline_Psychometric_Curves.zip`, and `code.zip`.
+2. Read `DATA_DICTIONARY.md` and `REPRODUCTION_GUIDE.md`.
+3. Inspect the MATLAB scripts for required input files, toolbox dependencies, and output locations before running them.
+4. Run analyses in the order required by their dependencies.
 
-## Software
-
-The analysis code was developed for MATLAB R2024. Required toolboxes and dependencies should be checked in the relevant scripts and in `01_CODE/README_CODE.md`.
-
-## Reproducing analyses
-
-1. Download or clone the repository.
-2. Obtain the de-identified data files included in the public release.
-3. Open MATLAB and set the repository root as the working directory.
-4. Read `01_CODE/README_CODE.md` before running any script.
-5. Run the relevant scripts in the documented order. Some analyses may depend on intermediate files produced by earlier steps.
-6. Check each script's input paths and output locations before running it.
-
-The scripts have undergone static review and path/documentation cleanup, but the complete pipeline has not yet been verified in a clean MATLAB environment. Do not interpret the repository as a guaranteed one-click reproduction until end-to-end execution has been tested.
+The stimulus-presentation programs are **not included** in the current repository. The complete analysis pipeline has not been certified here as a one-click reproduction workflow; users should verify the required dependencies and input paths in their local MATLAB environment.
 
 ## Data and code availability
 
-De-identified behavioral data, baseline psychophysical measurements, analysis code, model implementations, and figure-generation scripts are available through this repository to the extent that the corresponding files are included in the public release.
-
-Experimental stimulus-presentation programs are not included in the current release.
+The de-identified data and analysis materials available for this project are provided in the repository archives listed above. Experimental stimulus-presentation programs are not included in the current release.
 
 ## Citation
 
@@ -70,4 +70,4 @@ Jia, X., & Chen, L. *[Manuscript title to be added]*. [Publication details to be
 
 ## License
 
-See the `LICENSE` file if one is included. If no license is present, reuse permissions have not yet been explicitly specified.
+See `LICENSE` for the repository license terms.
